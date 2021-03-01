@@ -27,6 +27,22 @@
             hand: []
           }
         }
+      }
+
+      class Card extends React.Component{
+        render(){
+          let handStyles = {
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap"
+          }
+          let cardStyles = {
+            border: "1px solid black",
+            width: "70px",
+            height: "95px",
+            margin: "10px",
+            padding: "10px"
+          }
 
         drawCard = () => {
           const { hand } = this.state
@@ -50,52 +66,35 @@
           return(
             <>
               <h1>Draw a Card</h1>
-              <Card
-                drawCard={ this.drawCard }
-                shuffle={ this.shuffle }
-              />
-            </>
-          )
-        }
-      }
-
-      class Card extends React.Component{
-        render(){
-          let handStyles = {
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap"
-          }
-          let cardStyles = {
-            border: "1px solid black",
-            width: "70px",
-            height: "95px",
-            margin: "10px",
-            padding: "10px"
-          }
-          return(
-            <>
-              <button onClick={}>
-                Click to Draw a Card
-              </button>
-              <button onClick={ shuffle }>
-                Return Cards and Shuffle Deck
-              </button>
-              <div style={ handStyles }>
-                { this.props.hand.map((card, index) => {
+              <div style={ this.cardStyles } value = { value } key={ index }>
+                { this.state.hand.map((value, index) => {
                   return (
-                    <div style={ cardStyles } key={ index }>
-                      { card }
-                    </div>
+                   <Card
+                    value={value}
+                    key ={index}
+                     drawCard={ this.drawCard }
+                     shuffle={ this.shuffle }
+                   />
                   )
                 })}
-              </div>
-            </>
-          )
-        }
-      }
+              </div> 
+              
+              <div style={ this.handStyles }>
+              <button onClick={ this.drawCard }>
+                Click to Draw a Card
+              </button>
+              <button onClick={ this.shuffle }>
+                Return Cards and Shuffle Deck
+              </button>
+            </div>
+        </>
+      )
+    }
+  
 
+    
 
+export default App
 
       // No need to change anything below this line
       const domContainer = document.querySelector('#react-container')
